@@ -1,0 +1,16 @@
+OrdererOrgs:
+- Domain: onenet
+  Name: Orderer
+  Specs:
+  - SANS:
+    - localhost
+  - Hostname: orderer
+PeerOrgs:
+- Domain: onenet
+  Name: Org1
+  Template:
+    Count: 1
+    SANS:
+    - localhost
+  Users:
+    Count: 1

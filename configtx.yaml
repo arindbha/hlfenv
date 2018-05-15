@@ -1,0 +1,55 @@
+
+Profiles:
+
+    OrdererGenesis:
+        Orderer:
+            <<: *OrdererDefaults
+            Organizations:
+                - *OrdererOrg
+        Consortiums:
+          OneConsortium:
+             Organizations:
+                - *Org1Org
+                
+    
+    
+    xcChannel:
+        Consortium: OneConsortium
+        Application:
+            <<: *ApplicationDefaults
+            Organizations:
+                - *Org1Org
+                
+     
+Organizations:
+    - &OrdererOrg
+        Name: OrdererMSP
+        ID: OrdererMSP
+        MSPDir: crypto-config/ordererOrganizations/onenet/msp
+    
+    - &Org1Org
+        Name: Org1MSP
+        ID: Org1MSP
+        MSPDir: crypto-config/peerOrganizations/onenet/msp
+        AnchorPeers:
+          - Host: peer0.onenet
+            Port: 7051
+        
+
+Orderer: &OrdererDefaults
+        OrdererType: solo
+        Addresses:
+          - orderer.onenet:7050
+        BatchTimeout: 2s
+        BatchSize:
+          MaxMessageCount: 10
+          AbsoluteMaxBytes: 98 MB
+          PreferredMaxBytes: 512 KB
+        Kafka:
+          Brokers:
+            - 127.0.0.1:9092
+        Organizations:
+
+    
+Application: &ApplicationDefaults
+    Organizations:

@@ -1,0 +1,23 @@
+{
+    "fabricVersion":"1.0.0",
+    "orderers":{
+        "name" :"Orderer","mspID":"OrdererMSP","domain":"onenet","ordererHostname":"orderer","SANS":"localhost","type":"solo"
+    },
+    "addCA":"false",
+    "orgs":[
+        { 
+            "name" :"Org1",
+            "domain":"onenet",
+            "mspID":"Org1MSP",
+            "SANS":"localhost",
+            "peerCount":1,
+            "userCount":1
+        }
+        ],
+    "consortium":"OneConsortium",
+    "channels" :[
+                    {"channelName":"xc","orgs":["Org1"] }
+                ],
+    "chaincodes":[{"channelName":"xc","ccid":"mcc","version":"1.0","src":"github.com/mcc","participants":["Org1"]}]            
+                
+}
